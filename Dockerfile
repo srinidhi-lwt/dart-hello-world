@@ -3,6 +3,11 @@ FROM dart:stable AS build
 WORKDIR /app
 COPY . .
 RUN dart pub get
+
+# Create bin directory
+RUN mkdir -p bin
+
+# Compile Dart app
 RUN dart compile exe hello.dart -o bin/server
 
 # Stage 2: Create a minimal runtime image
